@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import type { NiveauScolaire } from '../types';
-import { Camera, Video, Send, Loader2, ArrowLeft, CheckCircle, Image as ImageIcon } from 'lucide-react';
+import { Camera, Video, Send, Loader2, ArrowLeft, CheckCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion } from 'framer-motion';
 
