@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS public.camarades (
     nom TEXT NOT NULL,
     photo_url TEXT,
     video_url TEXT,
-    niveau TEXT NOT NULL CHECK (niveau IN ('Primaire', 'Secondaire-Collège')),
+    niveau TEXT NOT NULL CHECK (niveau IN ('Primaire', 'Secondaire-Collège', 'Primaire & Secondaire')),
     annees TEXT,
     activite TEXT NOT NULL,
     biographie TEXT,

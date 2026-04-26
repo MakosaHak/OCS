@@ -1,4 +1,4 @@
-export type NiveauScolaire = 'Primaire' | 'Secondaire-Collège';
+export type NiveauScolaire = 'Primaire' | 'Secondaire-Collège' | 'Primaire & Secondaire';
 
 export interface Camarade {
   id: string;

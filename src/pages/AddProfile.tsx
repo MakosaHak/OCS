@@ -196,6 +196,7 @@ const AddProfile = () => {
             <select value={formData.niveau} onChange={(e) => setFormData({ ...formData, niveau: e.target.value as NiveauScolaire })} style={{ width: '100%' }}>
               <option value="Primaire">Primaire</option>
               <option value="Secondaire-Collège">Secondaire-Collège</option>
+              <option value="Primaire & Secondaire">Les deux (Primaire & Secondaire)</option>
             </select>
           </div>
           <div>
