@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Fingerprint, Settings, DownloadCloud } from 'lucide-react';
+import { Settings, DownloadCloud } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
@@ -10,7 +10,6 @@ const Header = () => {
     const handler = (e: any) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      console.log('PWA prompt ready');
     };
     window.addEventListener('beforeinstallprompt', handler);
     return () => window.removeEventListener('beforeinstallprompt', handler);
@@ -33,22 +32,25 @@ const Header = () => {
     <header className="glass" style={{ position: 'sticky', top: 0, zIndex: 100, padding: '0.6rem 0', borderBottom: '1px solid rgba(79, 70, 229, 0.1)' }}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.4rem' }}>
         
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', flexShrink: 0 }}>
-          <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px', borderRadius: '8px' }}>
-            <Fingerprint size={16} />
-          </div>
+        {/* Nouveau Logo OCS SVG */}
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', flexShrink: 0 }}>
+          <motion.img 
+            whileHover={{ scale: 1.05 }}
+            src="/favicon.svg" 
+            alt="OCS Logo" 
+            style={{ width: '36px', height: '36px', borderRadius: '8px' }} 
+          />
           <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-text-main)', fontFamily: 'var(--font-titles)' }}>
             OCS
           </span>
         </Link>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          {/* Bouton Admin - Un peu plus visible (Gris moyen) */}
           <Link 
             to="/admin" 
             style={{ 
               textDecoration: 'none', 
-              color: '#94a3b8', // Gris visible mais discret
+              color: '#94a3b8', 
               padding: '6px',
               display: 'flex',
               alignItems: 'center'
