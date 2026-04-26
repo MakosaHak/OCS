@@ -7,10 +7,13 @@ const Header = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   useEffect(() => {
-    window.addEventListener('beforeinstallprompt', (e) => {
+    const handler = (e: any) => {
       e.preventDefault();
       setDeferredPrompt(e);
-    });
+      console.log('PWA prompt ready');
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
   const handleInstallClick = () => {
@@ -22,15 +25,14 @@ const Header = () => {
         }
       });
     } else {
-      alert("Installation : \n\n• Sur iPhone : Appuyez sur 'Partager' ↑ puis 'Sur l'écran d'accueil'. \n\n• Sur Android/PC : Si vous ne voyez pas d'invitation, l'application est peut-être déjà installée.");
+      alert("Installation : \n\n• Sur iPhone : Appuyez sur 'Partager' ↑ puis 'Sur l'écran d'accueil'. \n\n• Sur Android/PC : L'application est déjà installée ou votre navigateur ne supporte pas l'installation directe ici.");
     }
   };
 
   return (
     <header className="glass" style={{ position: 'sticky', top: 0, zIndex: 100, padding: '0.6rem 0', borderBottom: '1px solid rgba(79, 70, 229, 0.1)' }}>
-      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.4rem' }}>
         
-        {/* Logo OCS compact */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', flexShrink: 0 }}>
           <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px', borderRadius: '8px' }}>
             <Fingerprint size={16} />
@@ -40,14 +42,21 @@ const Header = () => {
           </span>
         </Link>
 
-        {/* Boutons d'action resserrés */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          {/* Admin Icon invisible */}
-          <Link to="/admin" style={{ textDecoration: 'none', color: '#f8fafc', padding: '4px' }}>
-            <Settings size={8} />
+          {/* Bouton Admin - Un peu plus visible (Gris moyen) */}
+          <Link 
+            to="/admin" 
+            style={{ 
+              textDecoration: 'none', 
+              color: '#94a3b8', // Gris visible mais discret
+              padding: '6px',
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <Settings size={16} />
           </Link>
 
-          {/* Bouton Installer Minimaliste */}
           <motion.button 
             whileTap={{ scale: 0.95 }}
             onClick={handleInstallClick}
@@ -62,15 +71,13 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.25rem',
-              fontWeight: 700,
-              minWidth: 'auto'
+              fontWeight: 700
             }}
           >
             <DownloadCloud size={14} />
             <span>Installer</span>
           </motion.button>
           
-          {/* Bouton Rejoindre Simple */}
           <Link 
             to="/add" 
             className="btn btn-primary" 
