@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Camarade, NiveauScolaire } from '../types';
-import { Trash2, ShieldCheck, Lock, Loader2, Eye, LogOut, Users, Edit3, X, Check, Camera, Video } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Trash2, ShieldCheck, Lock, Loader2, LogOut, Edit3, X, Check, Camera, Video } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
